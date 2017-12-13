@@ -16,10 +16,10 @@ secret_key = ''.join(random.choice(string.ascii_uppercase+string.digits) for x i
 class User(Base):
 	__tablename__ = 'user'
 	id = Column(Integer, primary_key = True)
-	username = Column(String(32), index= True)
-	picture = Column(String)
-	email = Column(String)
-	password_hash = Column(String(64))
+	username = Column(String(250), nullable=False)
+	picture = Column(String(250))
+	email = Column(String(250), nullable=False)
+	"""password_hash = Column(String(64))
 
 	def hash_password(self, password):
 		self.password_hash = pwd_context.encrypt(password)
@@ -44,7 +44,7 @@ class User(Base):
 			# Token is invalid, so
 			return None
 		user_id = data['id']
-		return user_id
+		return user_id"""
 
 class Styles(Base):
 	__tablename__ = 'style'
@@ -68,10 +68,13 @@ class Influencers(Base):
 	id = Column(Integer, primary_key = True)
 	name = Column(String)
 	country = Column(String)
-	blog_name = Column(String)
+	blogName = Column(String)
 	description = Column(String)
-	style_id = Column(Integer, ForeignKey('style.id'))
-	style = relationship(Style)
+	picture = Column(String)
+	user_id = Column(String, ForeignKey('user.id'))
+	user = relationship(user)
+	styles_id = Column(Integer, ForeignKey('style.id'))
+	styles = relationship(Styles)
 
 	@property
 	def serialize(self):
@@ -81,31 +84,39 @@ class Influencers(Base):
 		'country': self.country,
 		'blog_name':self.blog_name,
 		'description': self.description,
+		'picture': self.picture
 		}
 
-class MakeUps(Base):
-	__tablename__ = 'MakeUps'
+"""class MakeUp_Looks(Base):
+	__tablename__ = 'MakeUp_Looks'
 
 	id = Column(Integer, ForeignKey('MakeUps.id'))
 	occasions = Column(String)
-	style_id = Column(Integer, Primary_key = True)
-	style = relationship(Style)
+	user_id = Column(String, ForeignKey('user.id'))
+	user = relationship(user)
+	styles_id = Column(Integer, ForeignKey('style.id'))
+	styles = relationship(Styles)
+
 
 class Fashion(Base):
 	__tablename__ = 'Fashion'
 
 	id = Column(Integer, ForeignKey('Fashion.id'))
 	occasions = Column(String)
-	style_id = Column(Integer, Primary_key = True)
-	style = relationship(Style)
+	user_id = Column(String, ForeignKey('user.id'))
+	user = relationship(user)
+	styles_id = Column(Integer, ForeignKey('style.id'))
+	styles = relationship(Styles)
 
 class HomeDecor(Base):
 	__tablename__ = 'HomeDecor'
 
 	id = Column(Integer, ForeignKey('HomeDecor.id'))
 	occasions = Column(String)
-	style_id = Column(Integer, Primary_key = True)
-	style = relationship(Style)
+	user_id = Column(String, ForeignKey('user.id'))
+	user = relationship(user)
+	styles_id = Column(Integer, ForeignKey('style.id'))
+	styles = relationship(Styles)"""
 
 engine = create_engine('sqlite:///styleInfluencers.db')
 
