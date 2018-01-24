@@ -1,1 +1,30 @@
-{%%}
+{% extends "index_after_login.html" %}
+{% block content %}
+{% include "includes/_navbar.html" %}
+<div class="index_after_login">
+	<h2>Edit influencer {{influencer.name}} below</h2>
+	<div class="influencer">
+		<form method="post">
+			<div class="form-group">
+				<label for="name">Influencer:</label>
+				<input type="text" maxlength="70" class="form-control" name="name" value="{{influencer.name}}"></div>
+
+				<label for="country">Country:</label>
+				<input type="text" maxlength="100" class="form-control" name="country" value="{{influencer.country}}"></textarea>
+
+				<label for="blog_name">Blog name:</label>
+				<input type="text" maxlength="100" class="form-control name="blog_name" value="{{influencer.blog_name}}"></textarea>
+
+				<label for="Description">Blog description:</label>
+				<textarea class="form-control" maxlength="500" row="5" name="description" value="{{influencer.description}}"></textarea>
+
+				<label for="picture">Picture of the influencer:</label>
+				<input type="text" maxlength="500" class="form-control" name="picture" value="{{influencer.picture}}"></textarea>
+			</div>
+
+			<button type="submit" class="btn btn-success" id="submit" type="submit"><span class="glyphicon glyphicon-glass" aria-hidden="true"></span>Update</button>
+			<button class="btn btn-default delete"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span><a href = "{{ url_for('index_after_login') }}">Cancel</a></button>
+		</form>
+	</div>
+</div>
+{% endblock %}
