@@ -1,6 +1,5 @@
-{% extends "index_after_login.html" %}
+{% extends "main.html" %}
 {% block content %}
-{% include "includes/_navbar.html" %}
 <div class="index_after_login">
 	<h2>Edit influencer {{influencer.name}} below</h2>
 	<div class="influencer">
@@ -10,16 +9,16 @@
 				<input type="text" maxlength="70" class="form-control" name="name" value="{{influencer.name}}"></div>
 
 				<label for="country">Country:</label>
-				<input type="text" maxlength="100" class="form-control" name="country" value="{{influencer.country}}"></textarea>
+				<input type="text" maxlength="100" class="form-control" name="country" value="{{influencer.country}}">
 
 				<label for="blog_name">Blog name:</label>
-				<input type="text" maxlength="100" class="form-control name="blog_name" value="{{influencer.blog_name}}"></textarea>
+				<input type="text" maxlength="100" class="form-control name="blog_name" value="{{influencer.blog_name}}">
 
 				<label for="Description">Blog description:</label>
-				<textarea class="form-control" maxlength="500" row="5" name="description" value="{{influencer.description}}"></textarea>
+				<textarea class="form-control" maxlength="1000" row="5" name="description" value="{{influencer.description}}"></textarea>
 
 				<label for="picture">Picture of the influencer:</label>
-				<input type="text" maxlength="500" class="form-control" name="picture" value="{{influencer.picture}}"></textarea>
+				<input type="link" class="form-control" name="picture" value="{{influencer.picture}}">
 			</div>
 
 			<button type="submit" class="btn btn-success" id="submit" type="submit"><span class="glyphicon glyphicon-glass" aria-hidden="true"></span>Update</button>
