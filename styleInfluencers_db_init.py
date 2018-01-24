@@ -17,18 +17,20 @@ User_1 = User(id = 1,
 
 # create Styles table
 style_1 = Styles(id = "1",
-				name = "Make-Up",
+				type = "MakeUp",
 				user_id = 1)
 session.add(style_1)
 session.commit()
 
 style_2 = Styles(id = "2",
-				name = "Interior Design")
+				type = "InteriorDesign",
+				user_id = 1)
 session.add(style_2)
 session.commit()
 
 style_3 = Styles(id = "3",
-				name = "Fashion")
+				type = "Fashion",
+				user_id = 1)
 session.add(style_3)
 session.commit()
 
@@ -151,7 +153,7 @@ session.commit()
 
 influencer_2 = Influencers(id = 2,
 						name = "Meng Mao",
-						country = "Francce",
+						country = "France",
 						blog_name = "mmeng.mao",
 						description = "Chinese high end fashion stylist in France.",
 						picture = "influencer_2.jpeg",
@@ -161,10 +163,10 @@ session.add(influencer_2)
 session.commit()
 
 influencer_3 = Influencers(id= 3,
-						name = "Lizzy Hadfield",
-						country = "England",
-						blog_name = "Shot From the Street",
-						description = "A blog by Lizzy Hadifeld.",
+						name = "Leia Sfez",
+						country = "France",
+						blog_name = "Leia Sfez",
+						description = "A KIND OF JOURNAL, WITH A LOT OF SWEARWORDS",
 						picture = "influencer_3",
 						user_id = 1,
 						style_id = 3)

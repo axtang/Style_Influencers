@@ -30,7 +30,7 @@ session = DBSession()
 
 #==================================
 
-#The following is for user creation, log-in, authentification, and authorization processes.
+# The following is for user creation, log-in, authentification, and authorization processes.
 
 CLIENT_ID = json.loads(
 	open('client_secrets.json', 'r').read())['web']['client_id']
@@ -221,7 +221,7 @@ def gconnect():
     flash("You are now logged in as %s" % login_session['username'])
     return output
 
-# create new user
+# Create new user
 def createNewUser(login_session):
 	newUser = User(name = login_session['username'],
 					email = login_session['email'],
@@ -245,7 +245,7 @@ def getUserID(email):
 	except:
 		return None
 
-#Disconnect - revoke a current user's token and reset their login_session
+# Disconnect - revoke a current user's token and reset their login_session
 @app.route('/gdisconnect')
 def gdisconnect():
   access_token = login_session.get('access_token')
@@ -278,7 +278,7 @@ def gdisconnect():
 
 #====================================
 
-# add Flask login_decorator
+# Add Flask login_decorator
 def login_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
@@ -291,24 +291,22 @@ def login_required(f):
 
 # Home page
 @app.route('/')
-@app.route('/home/')
+@app.route('/home')
 def Home():
-	styles = session.query(Styles).order_by(asc(Styles.category))
+	styles = session.query(Styles).order_by(asc(Styles.type))
 	influencers = session.query(Influencers).order_by(asc(Influencers.name))
 	return render_template('index.html')
 
-# display styles and influencers
+# Display all styles
 @app.route('/styles', methods = ['GET', 'POST'])
-def showStyles(category):
-	styles = session.query(Styles).order_by(asc(Styles.category))
-	style = session.query(Styles).filter_by(asc(styles_category)).one()
-	influencers = session.query(Influencers).filter_by(style = style).order_by(asc(Influecers.name)).all()
+def showStyles(type):
+	styles = session.query(Styles).order_by(asc(Styles.type).all()
+	style = session.query(Styles).filter_by(asc(styles_type)).one()
 	print (style, influencers)
-
-	creator = getUserID(category.user_id)
+	creator = getUserID(type.user_id)
 	if 'username' not in login_session or creator.id != login_session['user_id']:
 		return render_template('publicStyles.html',
-								style = style.category,
+								style = style.type,
 								styles = styles,
 								influencers = influencers
 								)
@@ -316,49 +314,66 @@ def showStyles(category):
 		user = getUserInfo(login_session['user_id'])
 		return render_template('styles.html',
 								styles = styles,
-								style = style.category,
+								style = style.type,
 								influencers = influencers)
 
-# display a/ one specfic influencer
-@app.route('/styles/<path:styles_category>/<path:influencers_name>', methods = ['GET', 'POST'])
-def showInfluencer(styles_category, influencers_name):
-	styles = session.query(Styles).order_by(asc(Styles.category))
-	style = session.query(Styles).filter_by(styles_category).one()
-	influencer = session.query(Influencers).filter_by(Styles = styles).order_by(asc(name = influencers_name)).one()
+# Display all influencers
+@app.route('/influencers', methods = ['GET', 'POST'])
+def showInfluencers(blogName):
+    influencers = session.query(Influencers).order_by(asc(Influencers.blogName)).all()
+    influencer = session.query(Influencers).filter_by(asc(influencers_blogName)).one()
+    print(influencers)
+    creator = getUserID(type.user_id)
+    if 'username' not in login_session or creator.id != login_session['user.id']:
+        return render_template('publicInfluencers.html'
+                                influencer = influencer.blogName,
+                                influencers = influencers)
+    else:
+        return render_template('influencers.html',
+                                influencer = influencer.blogName,
+                                influencers = influencers)
+
+# Display a specfic influencer based on a specific style
+@app.route('/<string:styles_type>/<string:influencers_name>', methods = ['GET', 'POST'])
+def showStyleInfluencer(styles_type, influencers_name):
+	styles = session.query(Styles).order_by(asc(Styles.type))
+	style = session.query(Styles).filter_by(styles_type).one()
+	influencer = session.query(Influencers).filter_by(Style = style).order_by(asc(name = influencers_name)).one()
+    print (style, influencer)
 
 	creator = getUserInfo(influencer.user_id)
 	if 'username' not in login_session or creator.id != login_sessin['user_id']:
 		return render_template('publicInfluencers.html',
-								styles = styles.category,
-								influencer = influencers)
+								styles = styles.type,
+								influencer = influencers.name)
 	else:
 		return render_template('influencers.html',
-								styles = styles.category,
-								influencer = influencers_name)
+								styles = styles.type,
+								influencer = influencers.name)
 
 #======================================
 
-# add a style
+# Add a style
 @app.route('/styles/new', methods = ['GET', 'POST'])
 @login_required
 def newStyle():
 	if request.method == 'POST':
 		newStyle = Styles(
-			category = request.form['category'],
+			type = request.form['type'],
 			user_id = login_session['user_id'])
 		print (newStyle)
 		session.add(newStyle)
-		flash('You have successfully added %s as a new style!' % newStyle.category)
+		flash('You have successfully added %s as a new style!' % newStyle.type)
         session.commit()
 		return redirect(url_for('index.html'))
 	else:
 		return render_template('newStyle.html')
 
-# edit a style
-@app.route('/styles/<path:styles_category>/edit', method = ['GET', 'POST'])
+# Edit a style
+@app.route('/styles/<string:styles_type>/edit', method = ['GET', 'POST'])
 @login_required
-def editStyle(styles_category):
-	editStyle = session.query(Styles).filter_by(category = styles_category).one()
+def editStyle(styles_type):
+	editStyle = session.query(Styles).filter_by(type = styles_type).one()
 
 	creator = getUserInfo(editStyle.user_id)
 	user = getUserInfo(login_session['user_id'])
@@ -370,8 +385,8 @@ def editStyle(styles_category):
 	else:
 		# edit the style
 		if request.method == 'POST':
-			if request.form['category']:
-				editStyle.category = request.form['category']
+			if request.form['type']:
+				editStyle.type = request.form['type']
 			session.add(editStyle)
 			session.commit()
 			flash('You have successfully edited a style!')
@@ -381,12 +396,12 @@ def editStyle(styles_category):
 									styles = editStyle,
 									style = style)
 
-# delete a style
-@app.route('/styles/<path:styles_category>/delete', method = ['GET', 'POST'])
+# Delete a style type
+@app.route('/styles/<string:styles_type>/delete', method = ['GET', 'POST'])
 @login_required
-def deleteStyle(styles_id, styles_category):
+def deleteStyle(styles_id, styles_type):
 	styles = session.query(Styles).filter_by(id = styles_id).one()
-	deletingStyle = session.query(Styles).filter_by(category = styles_category).one()
+	deletingStyle = session.query(Styles).filter_by(type = styles_type).one()
 
 	creator = getUserInfo(deletingStyle.user_id)
 	user = getUserInfo(login_session['user_id'])
@@ -397,14 +412,14 @@ def deleteStyle(styles_id, styles_category):
 	if request.method == 'POST':
 		session.delete(deletingStyle)
 		session.commit()
-		flash("You have successfully deleted %s!" % deletingStyle_category)
+		flash("You have successfully deleted %s!" % deletingStyle_type)
 		return redirect(url_for('index.html',
-								styles_category = styles.category))
+								styles_type = styles.type))
 	else:
 		return render_template('deleteStyle.html',
 								style = deletingStyle)
 
-# add a new influencer
+# Add a new influencer
 @app.route('/influencers/new', methods = ['GET', 'POST'])
 @login_required
 def newInfluencer(influencer_id):
@@ -423,8 +438,8 @@ def newInfluencer(influencer_id):
     else:
         return render_template('newInfluencer.html')
 
-# edit an influencer
-@app.route('/influencers/<path:influencers_name>/edit', method = ['GET'], ['POST'])
+# Edit an influencer
+@app.route('/influencers/<string:influencers_name>/edit', method = ['GET'], ['POST'])
 @login_required
 def editInfluencers(influencers_name):
     editInfluencer = session.query(Influencers).filter_by(name = influencer_name).one()
@@ -450,8 +465,8 @@ def editInfluencers(influencers_name):
                                     influencers = editInfluecers,
                                     influencer = influencer)
 
-# delete an influencer
-@app.route('/influencers/<path:influencer_name>/delete', method = ['GET', 'POST'])
+# Delete an influencer
+@app.route('/influencers/<string:influencer_name>/delete', method = ['GET', 'POST'])
 @login_required
 def deleteInfluencer(influencers_id, influencers_name):
     influencers = session.query(Influencers).filter_by(id = influencers_id).one()
@@ -473,47 +488,51 @@ def deleteInfluencer(influencers_id, influencers_name):
         return redner_template('deleteInfluencer.html', influencer = deletingInfluencer)
 
 #==========================
-
+# Styles and influencers json file
 @app.route('/styleInfluencers/JSON')
 @login_required
 def allStyleInfluencersJSON():
 	styles = session.query(Styles).all()
 	styles_dict = [s.serializes for s in styles]
 	for s in range(len(styles_dict)):
-		categories = [c.serialize for c in session.query(Category).filter_by(styles_id = styles_dict[c]["id"]).all()]
+		categories = [c.serialize for c in session.query(Type).filter_by(styles_id = styles_dict[c]["id"]).all()]
 
 		if categories:
-			styles_dict[c]["Category"] = categories
+			styles_dict[c]["type"] = categories
 
+# Styles json file
 @app.route('/styleInfluencers/styles/JSON')
 @login_required
 def stylesJSON():
 	styles = session.query(Styles).all()
 	styles_dict = [s.serialize for s in styles]
 	for s in range(len(styles_dict)):
-		category = [i.serialize for i in session.query(Category).filter_by(styles_id = styles_dict[s]["id"]).all()]
-		if category: 
-			category_dict[c]["category"] = category
+		type = [i.serialize for i in session.query(Type).filter_by(styles_id = styles_dict[s]["id"]).all()]
+		if type: 
+			type_dict[c]["type"] = type
 	return jsonify(Styles = styles_dict)
 
+# Influencers json file
 @app.route('/styleInfluencers/influencers/JSON')
 @login_required
 def influencersJSON():
 	infuencers = session.query(Influencers).all()
 	return jsonify(influencers = [i.serialize for i in influencers])
 
-@app.route('/styleInfluencers/<path:styles_category>/influencers/JSON')
+# Style type json file
+@app.route('/styleInfluencers/<string:styles_type>/influencers/JSON')
 @login_required
-def stylesInfluencersJSON(styles_category):
-	style = session.query(Category).filter_by(category=styles_category).one()
+def stylesInfluencersJSON(styles_type):
+	style = session.query(Type).filter_by(type=styles_type).one()
 	influencers = session.query(Influencers).filter_by(styles = styles).all()
 	return jsonify(influencers = [i.serialize for i in influencers])
 
-@app.route('/styleInfluencers/<path:styles_category>/<path:influencer_name>/JSON')
+# Influencer based on style type json file
+@app.route('/styleInfluencers/<string:styles_type>/<string:influencer_name>/JSON')
 @login_required
 def influencerStylesJSON():
-	styles = session.query(Styles).filter_by(category = styles_category).one()
-	influencer = session.query(Influencers).filter_by(blog_name = influencer_blogName, category = styles_category).one()
+	styles = session.query(Styles).filter_by(type = styles_type).one()
+	influencer = session.query(Influencers).filter_by(blog_name = influencer_blogName, type = styles_type).one()
 	return jsonify(influencers=[influencers.serialize])
 
 if __name__ == '__main__':
