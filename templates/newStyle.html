@@ -1,1 +1,18 @@
-{%%}
+{% extends "main.html%}
+{% block content %}
+<div class="card card-section item-info-card">
+	<h2>Add new style below:</h2>
+	<div class="newStyle">
+		<form method="post">
+			<div class="form-group">
+				<label for="type">Type of style:</label>
+				<input type="text" maxlength="100" class="form-control" name="type" placeholder="Type of style">
+				<div>
+					<button type="submit" class="btn btn-success" id="submit" type="submit"><span class="glyphicon glyphicon-glass" aria-hidden="true"></span>Create New Style</button>
+					<button class="btn btn-default delete"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span><a href="{{url_for('styles')}}">Cancel</a></button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+{% endblock%}
