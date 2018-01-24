@@ -1,1 +1,30 @@
-{%%}}
+{% extends "main.html%}
+{% block content %}
+<div class="card card-section item-info-card">
+	<h2>Add new influencer below:</h2>
+	<div class="newInfluencer">
+		<form method="post">
+			<div class="form-group">
+				<label for="name">Name of influencer:</label>
+				<input type="text" maxlength="200" class="form-control" name="name" placeholder="Name of influencer">
+
+				<label for="country">Which country the influencer is from:</label>
+				<input type="text" maxlength="100" class="form-control" name="country" placeholder="Country of influencer">
+
+				<label for="blog_name">Blog name:</label>
+				<input type="text" maxlength="100" class="form-control" name="blog_name" placeholder="Blog name">
+
+				<label for="description">Description of the influencer:</label>
+				<textarea type="text" maxlength="1000" row="5" name="description" placeholder="Name of influencer"></textarea>
+
+				<label for="picture">A link of picture featuring this influencer:</label>
+				<input type="link" class="form-control" name="picture" placeholder="picture">
+				<div>
+					<button type="submit" class="btn btn-success" id="submit" type="submit"><span class="glyphicon glyphicon-glass" aria-hidden="true"></span>Create A New Influencer</button>
+					<button class="btn btn-default delete"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span><a href="{{url_for('influencers')}}">Cancel</a></button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+{% endblock%}
