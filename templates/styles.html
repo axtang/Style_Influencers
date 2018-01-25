@@ -1,31 +1,25 @@
 {% extends "main.html" %}
-{% block content %}
 {% include "includes/_navbar.html" %}
+{% block content %}
 	<div class="row divider green">
 		<div class="col-md-12"></div>
 	</div>
 	<div class="row banner menu">
 		<div class="col-md-11 col-md-offset-1 padding-none">
-			<h1>{{ styles.category }}
-			<figure class="creator">
-				<img src="{{ url_for('static', filename='blank_user.gif') }}">
-				<figcaption>Styles creator's name goes here</figcaption>
-			</figure>
-			</h1>
-
+			<h1>Styles</h1>
 		</div>
 	</div>
 
 <div class = 'flash'>
-		      {% with messages = get_flashed_messages() %}
-      {% if messages %}
+	{% with messages = get_flashed_messages() %}
+    {% if messages %}
           
-        <ul>
-        {% for message in messages %}
-            <li> <strong> {{ message }} </strong> </li>
-        {% endfor %}
-        </ul>
-        {% endif %}
+    <ul>
+    {% for message in messages %}
+        <li> <strong> {{ message }} </strong> </li>
+    {% endfor %}
+	</ul>
+    {% endif %}
     {% endwith %}
 
 </div>
@@ -57,9 +51,9 @@
 			<div class="col-md-3">
 				<h2>MakeUp</h2>
 					{% for i in Styles %}
-						{% if i.category == 'Makeup' %}
+						{% if i.type == 'Makeup' %}
 							<div class="makeupStyle">
-								<h3>{{i.category}}</h3>
+								<h3>{{i.type}}</h3>
 								<a href='{{url_for('editStyle', styles_id = styles.id) }}'>Edit</a> | 
 								<a href='{{url_for('deleteStyle', styles_id = styles.id) }}'>Delete</a>
 							</div>
@@ -69,9 +63,9 @@
 			<div class="col-md-4">			
 				<h2>Interior Design</h2>
 					{% for i in styles %}
-						{% if i.category == 'InteriorDesign' %}
+						{% if i.type == 'InteriorDesign' %}
 						<div class="InteriorDesignStyle">
-							<h3>{{i.category}}</h3>
+							<h3>{{i.type}}</h3>
 								<a href='{{url_for('editStyle', styles_id = styles.id) }}'>Edit</a> | 
 								<a href='{{url_for('deleteStyle', styles_id = styles.id) }}'>Delete</a>
 						</div>
@@ -81,9 +75,9 @@
 			<div class="col-md-3">
 				<h2>Fashion</h2>
 					{% for i in styles %}
-						{% if i.cateogry == 'Fashion' %}
+						{% if i.type == 'Fashion' %}
 						<div class="FashionStyle">
-							<h3>{{i.category}}</h3>
+							<h3>{{i.type}}</h3>
 								<a href='{{url_for('editStyle', styles_id = styles.id) }}'>Edit</a> | 
 								<a href='{{url_for('deleteStyle', styles_id = styles.id) }}'>Delete</a>
 						</div>
