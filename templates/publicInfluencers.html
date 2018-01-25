@@ -1,1 +1,27 @@
-{% extends 'main.html' %}
+{% extends "main.html" %}
+{% include "includes/_navbar.html" %}
+{% block content %}
+	<div class="row divider green">
+		<div class="col-md-12"></div>
+	</div>
+	<div class="row banner menu">
+		<div class="col-md-11 col-md-offset-1 padding-none">
+			<h1>Influencers</h1>
+			<ul class="influencers">
+				<img href="influencer_1.jpeg" class="image"><li>Anna Newton</li>
+				<img href="influencer_2.jpeg" class="image"><li>Meng Mao</li>
+				<img href="influencer_3.jpeg" class="image"><li>Leia Sfez</li>
+				<img href="influencer_4.jpeg" class="image"><li>Julia Engel</li>
+				<img href="influencer_5.jpeg" class="image"><li>Lily Pebbles</li>
+				<img href="influencer_6.jpeg" class="image"><li>Anna Jane</li>
+				<img href="influencer_7.jpeg" class="image"><li>Violette</li>
+				<img href="influencer_8.jpeg" class="image"><li>Lucy Cuneo</li>
+		</div>
+	</div>
+	<div class="container">
+		<h3>Check out more about Styles and Influencers by loggin in here:</h3>
+		{% if session.logged_in == NULL %}
+		<a hred = "{{url_for('login')}}" class = "btn btn-primary btn-lg">Log In Here</a>
+		{% endif %}
+	</div>
+{% endblock %}
