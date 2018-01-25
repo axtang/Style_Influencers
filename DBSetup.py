@@ -167,7 +167,7 @@ influencer_3 = Influencers(id= 3,
 						country = "France",
 						blog_name = "Leia Sfez",
 						description = "A KIND OF JOURNAL, WITH A LOT OF SWEARWORDS",
-						picture = "influencer_3",
+						picture = "influencer_3.jpeg",
 						user_id = 1,
 						style_id = 3)
 session.add(influencer_3)
@@ -178,7 +178,7 @@ influencer_4 = Influencers(id = 4,
 						country = "America",
 						blog_name = "Gal Meets Glam",
 						description = "A Charleston Based Style and Beauty Blog by Julia Engel.",
-						picture = "influencer_4",
+						picture = "influencer_4.jpeg",
 						user_id = 1,
 						style_id = 3)
 session.add(influencer_4)
@@ -189,18 +189,18 @@ influencer_5 = Influencers(id = 5,
 						country = "England",
 						blog_name = "Lily Pebbles",
 						description = "A full-time Londoner living in denim, usually found vlogging & taking photos of food.",
-						picture = "influencer_5",
+						picture = "influencer_5.jpeg",
 						user_id = 1,
 						style_id = 1)
 session.add(influencer_5)
 session.commit()
 
 influencer_6 = Influencers(id = 6,
-						name = "Anna",
+						name = "Anna Jane",
 						country = "America",
 						blog_name = "SeeAnnaJane",
 						description = "A 32 year old who loves her family, friends, laughing, sarcasm, style, cooking, and the occasional DIY.",
-						picture = "influencer_6",
+						picture = "influencer_6.jpeg",
 						user_id = 1,
 						style_id = 3)
 session.add(influencer_6)
@@ -211,7 +211,7 @@ influencer_7 = Influencers(id = 7,
 						country = "France",
 						blog_name = "violette_fr",
 						description = "Makeup Artist Violette on the consummate French girl beauty routines.",
-						picture = "influencer_7",
+						picture = "influencer_7.jpeg",
 						user_id = 1,
 						style_id = 1)
 session.add(influencer_7)
@@ -222,7 +222,7 @@ influencer_8 = Influencers(id = 8,
 						country = "America",
 						blog_name = "Lucy Cuneo",
 						description = "Photographer, artist, content creator. Charleston-based, world traveler. Wife, mom, style lover and natural over-sharer.",
-						picture = "influencer_8",
+						picture = "influencer_8.jpeg",
 						user_id = 1,
 						style_id = 2)
 session.add(influencer_8)
