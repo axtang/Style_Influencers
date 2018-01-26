@@ -300,21 +300,21 @@ def Home():
 # Display all styles
 @app.route('/styles', methods = ['GET', 'POST'])
 def showStyles(type):
-	styles = session.query(Styles).order_by(asc(Styles.type).all()
-	style = session.query(Styles).filter_by(asc(styles_type)).one()
-	print (style, influencers)
+	allStyles = session.query(Styles).order_by(asc(Styles.type)).all()
+    oneStyle = session.query(Styles).filter_by(asc(allStyles_type)).one()
+    print (style, influencers)
 	creator = getUserID(type.user_id)
 	if 'username' not in login_session or creator.id != login_session['user_id']:
 		return render_template('publicStyles.html',
-								style = style.type,
-								styles = styles,
+								oneStyle = style.type,
+								allStyles = styles,
 								influencers = influencers
 								)
 	else:
 		user = getUserInfo(login_session['user_id'])
 		return render_template('styles.html',
-								styles = styles,
-								style = style.type,
+								allStyles = styles,
+								oneStyle = style.type,
 								influencers = influencers)
 
 # Display all influencers
@@ -322,7 +322,7 @@ def showStyles(type):
 def showInfluencers(blogName):
     influencers = session.query(Influencers).order_by(asc(Influencers.blogName)).all()
     influencer = session.query(Influencers).filter_by(asc(influencers_blogName)).one()
-    print(influencers)
+    print (influencers)
     creator = getUserID(type.user_id)
     if 'username' not in login_session or creator.id != login_session['user.id']:
         return render_template('publicInfluencers.html'
