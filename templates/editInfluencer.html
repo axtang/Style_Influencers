@@ -1,8 +1,7 @@
 {% extends "main.html" %}
 {% block content %}
-<div class="index_after_login">
+<div class="content">
 	<h2>Edit influencer {{influencer.name}} below</h2>
-	<div class="influencer">
 		<form method="post">
 			<div class="form-group">
 				<label for="name">Influencer:</label>
@@ -24,6 +23,5 @@
 			<button type="submit" class="btn btn-success" id="submit" type="submit"><span class="glyphicon glyphicon-glass" aria-hidden="true"></span>Update</button>
 			<button class="btn btn-default delete"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span><a href = "{{ url_for('index_after_login') }}">Cancel</a></button>
 		</form>
-	</div>
 </div>
 {% endblock %}
