@@ -1,8 +1,7 @@
 {% extends "main.html" %}
 {% block content %}
-<div class="index_after_login">
+<div class="wrapper">
 	<h2>Edit style {{style.type}} below</h2>
-	<div class="style">
 		<form method="post">
 			<div class="form-group">
 				<label for="type">Style type:</label>
@@ -12,6 +11,5 @@
 			<button type="submit" class="btn btn-success" id="submit" type="submit"><span class="glyphicon glyphicon-glass" aria-hidden="true"></span>Update</button>
 			<button class="btn btn-default delete"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span><a href = "{{ url_for('index_after_login') }}">Cancel</a></button>
 		</form>
-	</div>
 </div>
 {% endblock %}
