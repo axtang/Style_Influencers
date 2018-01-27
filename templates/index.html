@@ -1,13 +1,16 @@
-{% extends 'layout.html' %}
-
+{% extends 'main.html' %}
+{% include "includes/_navbar.html" %}
 {% block body%}
-
-<div class="jumbotron text-center">
-	<h1>Style Influencers</h1>
-	<p class="lead">This application is written in Python 3.0, HTML5, and CSS3, and built on a framework called Flask. This application is connected to a database containing 2 categories, styles and influencers, and in order for users to interact with these categories, users need to log into the application using Google's authentication and authorization process, in this case. Once logged in, users can edit, delete, or add new style or influencer features to this application.</p>
-	{% if session.logged_in == NULL %}
-	<a hred = "{{url_for('login')}}" class = "btn btn-primary btn-lg">Log In Here</a>
-	{% endif %}
+<div class="content">
+	<div class="jumbotron text-center">
+		<h1>Style Influencers</h1>
+		<p class="lead">This application is written in Python 3.0, HTML5, and CSS3, and built on a framework called Flask.</p>
+		<p>This application is connected to a database containing 2 categories, styles and influencers, and in order for users to interact with these categories, users need to log into the application using Google's authentication and authorization process.</p>
+		<p>Once logged in, users can edit, delete, or add new style or influencer features to this application.</p>
+		{% if session.logged_in == NULL %}
+		<a hred = "{{url_for('login')}}" class = "btn btn-primary btn-lg">Log In Here</a>
+		{% endif %}
+	</div>
 </div>
 
 {% endblock%}
