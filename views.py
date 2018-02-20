@@ -32,7 +32,8 @@ DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
 
-# The following is for user creation, log-in, authentification, and authorization processes.
+# The following is for user creation, log-in, authentification, 
+# and authorization processes.
 CLIENT_ID = json.loads(
 	open('client_secrets.json', 'r').read())['web']['client_id']
 APPLICATION_NAME = "Style-Influencers Application"
@@ -41,9 +42,9 @@ APPLICATION_NAME = "Style-Influencers Application"
 # anti-forgery state token
 @app.route('/login')
 def showLogin():
-	state=''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(32))
+	state=''.join(random.choice(string.ascii_uppercase + string.digits)
+        for x in range(32))
 	login_session['state'] = state
-
 	return render_template('login_template')
 
 
