@@ -1,5 +1,3 @@
-'use strict';
-
 from models import Base, User, Influencers, Styles
 from functools import wraps
 from flask import Flask, jsonify, request, url_for, abort, g, redirect, flash
@@ -32,7 +30,6 @@ engine = create_engine('sqlite:///styleInfluencers.db')
 Base.metadata.bine = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
-
 
 
 # The following is for user creation, log-in, authentification, and authorization processes.
