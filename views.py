@@ -32,34 +32,35 @@ DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
 
-# The following is for user creation, log-in, authentification, 
+# The following is for user creation, log-in, authentification
 # and authorization processes.
 CLIENT_ID = json.loads(
-	open('client_secrets.json', 'r').read())['web']['client_id']
+    open('client_secrets.json', 'r').read())['web']['client_id']
 APPLICATION_NAME = "Style-Influencers Application"
 
 
 # anti-forgery state token
 @app.route('/login')
 def showLogin():
-	state=''.join(random.choice(string.ascii_uppercase + string.digits)
-        for x in range(32))
-	login_session['state'] = state
-	return render_template('login_template')
+    state = ''.join(
+        random.choice(string.ascii_uppercase + string.digits)
+        for x in range(32))login_session['state'] = state
+    return render_template('login_template')
 
 
 # Add @auth.verify_password decorator here
 """@auth.verify_password
 def verify_password(username_or_token, password):
-	# Try to see if it's a username first
-	user_id = User.verify_auth_token
-	if user_id:
-		user = session.query(User).filter_by(id=user_id).one()
-	else:
-		user = session.query(User).filter_by(id=username_or_token).one()
-		# If user or password is not correct
-		if not user or not user.verify_password(password):
-			return False"""
+# Try to see if it's a username first
+user_id = User.verify_auth_token
+if user_id:
+user = session.query(User).filter_by(id=user_id).one()
+else:
+user = session.query(User).filter_by(id=username_or_token).one()
+# If user or password is not correct
+if not user or not user.verify_password(password):
+    return False
+    """
 
 # take in a google one-time use code
 # exchange this auth-code for an access token
