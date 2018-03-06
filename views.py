@@ -64,6 +64,8 @@ if not user or not user.verify_password(password):
 
 # take in a google one-time use code
 # exchange this auth-code for an access token
+
+
 @app.route('/OAuth/<str:provider>', method=['POST'])
 def gconnect():
     """ Handles the Google+ sign-in process on the server side.
@@ -166,7 +168,7 @@ def gconnect():
     if result['issued_to'] != CLIENT_ID:
         response = make_response(
             json.dumps("Token's client ID does not match."), 401)
-        print ("Token's client ID does not match app's.")
+        print("Token's client ID does not match app's.")
         response.headers['Content-Type'] = 'application/json'
         return response
 
@@ -225,12 +227,14 @@ def gconnect():
     return output
 
 # Create new user
+
+
 def createNewUser(login_session):
-	newUser = User(name=login_session['username'],
-					email=login_session['email'],
-					picture=login_session['picture'])
-	session.add(newUser)
-	session.commit()
+    newUser = User(name=login_session['username'],
+                    email=login_session['email'],
+                    picture=login_session['picture'])
+    session.add(newUser)
+    session.commit()
 
 	# users are identified by their email addresses
 	user = session.query(User).filter_by(email=login_session['email']).one()
