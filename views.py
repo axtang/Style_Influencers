@@ -1,6 +1,7 @@
 from models import Base, User, Influencers, Styles
 from functools import wraps
 from flask import Flask, jsonify, request, url_for, abort, g, redirect, flash
+from flask import Blueprints
 from flask import render_template
 
 # For the anti-forgery state token
