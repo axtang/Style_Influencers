@@ -1,6 +1,7 @@
 import os
 import sys
 from flask import Blueprints
+from flask import session as login_session
 from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship, sessionmaker
@@ -66,11 +67,34 @@ class User(Base):
 	email = Column(String(250), nullable=False)
 
 
+# connect to database and create database session
 engine = create_engine('sqlite:///styleInfluencers.db')
 Base.metadata.create_all(engine)
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
 
+# The following is for user creation, log-in, authentification
+# and authorization processes.
 CLIENT_ID = json.loads(
-	open('client_secrets.json','r').read())['web']['client_id']
+    open('client_secrets.json', 'r').read())['web']['client_id']
+
+
+def createUser(login_session):
+	newUser = User(name=login_session['username'],
+					email=login_session['email'],
+					picture=login_session['picture'])
+
+
+def getUserID(email):
+	try:
+		user = session.query(User).filter_by(email=email).one()
+		return user.id
+	except:
+		return None
+		
+
+def getUserInfo(user_id):
+	user = session.query(User).filter_by(id=user_id).one()
+	return user
+
