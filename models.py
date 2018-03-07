@@ -12,6 +12,12 @@ from itsdangerous import (TimedJSONWebSignatureSerializer as Serializer, BadSign
 
 Base = declarative_base()
 
+# connect to database and create database session
+engine = create_engine('sqlite:///styleInfluencers.db')
+Base.metadata.create_all(engine)
+DBSession = sessionmaker(bind=engine)
+session = DBSession()
+
 # Secret key to create and verify tokens
 secret_key = ''.join(random.choice(string.ascii_uppercase+string.digits) for x in range(32))
 
@@ -65,13 +71,6 @@ class User(Base):
 	username = Column(String(250), nullable=False)
 	picture = Column(String(250))
 	email = Column(String(250), nullable=False)
-
-
-# connect to database and create database session
-engine = create_engine('sqlite:///styleInfluencers.db')
-Base.metadata.create_all(engine)
-DBSession = sessionmaker(bind=engine)
-session = DBSession()
 
 
 # The following is for user creation, log-in, authentification
