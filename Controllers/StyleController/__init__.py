@@ -1,3 +1,3 @@
 from DBSetup import *
 
-style = Blueprints('style', __name__)
+style = Blueprint('style', __name__)
