@@ -1,4 +1,5 @@
 from flask import Blueprints
+from jinja2 import TemplateNotFound
 from flask import session as login_session
 from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
