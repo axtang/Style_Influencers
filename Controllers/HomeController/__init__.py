@@ -1,3 +1,3 @@
-from DBSetup import *
+from models import *
 
 home = Blueprint('home', __name__)
