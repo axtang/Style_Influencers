@@ -1,7 +1,7 @@
 from . import *
 
 # Edit a style
-@app.route('/styles/<string:styles_type>/edit', method=['GET', 'POST'])
+@style.route('/styles/<string:styles_type>/edit', method=['GET', 'POST'])
 @login_required
 def editStyle(styles_type):
 	editStyle = session.query(Styles).filter_by(type=styles_type).one()

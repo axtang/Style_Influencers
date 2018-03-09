@@ -1,7 +1,7 @@
 from . import *
 
 # Add a style
-@app.route('/styles/new', methods=['GET', 'POST'])
+@style.route('/styles/new', methods=['GET', 'POST'])
 @login_required
 def newStyle():
 	if request.method == 'POST':

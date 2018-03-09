@@ -1,7 +1,7 @@
 from . import *
 
 # Display all styles
-@app.route('/styles', methods=['GET', 'POST'])
+@style.route('/styles', methods=['GET', 'POST'])
 def showStyles(type):
 	allStyles = session.query(Styles).order_by(asc(Styles.type)).all()
     oneStyle = session.query(Styles).filter_by(asc(allStyles_type)).one()

@@ -1,7 +1,7 @@
 from . import *
 
 # Delete a style type
-@app.route('/styles/<string:styles_type>/delete', method=['GET', 'POST'])
+@style.route('/styles/<string:styles_type>/delete', method=['GET', 'POST'])
 @login_required
 def deleteStyle(styles_id, styles_type):
 	styles = session.query(Styles).filter_by(id=styles_id).one()
