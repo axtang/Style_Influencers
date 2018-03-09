@@ -1,7 +1,7 @@
 from . import *
 
 # anti-forgery state token
-@app.route('/login')
+@auth.route('/login')
 def showLogin():
     state = ''.join(
         random.choice(string.ascii_uppercase + string.digits)
