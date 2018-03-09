@@ -1,7 +1,7 @@
 from . import *
 
 # Display a specfic influencer based on a specific style
-@app.route('/<string:styles_type>/<string:influencers_name>', methods=['GET', 'POST'])
+@influencer.route('/<string:styles_type>/<string:influencers_name>', methods=['GET', 'POST'])
 def showStyleInfluencer(styles_type, influencers_name):
 	styles = session.query(Styles).order_by(asc(Styles.type))
 	style = session.query(Styles).filter_by(styles_type).one()

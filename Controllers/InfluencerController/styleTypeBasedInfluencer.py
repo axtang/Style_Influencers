@@ -1,7 +1,7 @@
 from . import *
 
 # Influencer based on style type json file
-@app.route('/styleInfluencers/<string:styles_type>/<string:influencer_name>/JSON')
+@influencer.route('/styleInfluencers/<string:styles_type>/<string:influencer_name>/JSON')
 @login_required
 def influencerStylesJSON():
 	styles = session.query(Styles).filter_by(type=styles_type).one()

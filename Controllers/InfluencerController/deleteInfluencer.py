@@ -1,7 +1,7 @@
 from . import *
 
 # Delete an influencer
-@app.route('/influencers/<string:influencer_name>/delete', method=['GET', 'POST'])
+@influencer.route('/influencers/<string:influencer_name>/delete', method=['GET', 'POST'])
 @login_required
 def deleteInfluencer(influencers_id, influencers_name):
     influencers = session.query(Influencers).filter_by(id=influencers_id).one()

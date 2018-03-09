@@ -1,7 +1,7 @@
 from . import *
 
 # Add a new influencer
-@app.route('/influencers/new', methods=['GET', 'POST'])
+@influencer.route('/influencers/new', methods=['GET', 'POST'])
 @login_required
 def newInfluencer(influencer_id):
     if request.method == ['POST']:

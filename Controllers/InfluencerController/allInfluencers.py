@@ -1,7 +1,7 @@
 from . import *
 
 # Display all influencers
-@app.route('/influencers', methods=['GET', 'POST'])
+@influencer.route('/influencers', methods=['GET', 'POST'])
 def showInfluencers(blogName):
     influencers = session.query(Influencers).order_by(asc(Influencers.blogName)).all()
     influencer = session.query(Influencers).filter_by(asc(influencers_blogName)).one()

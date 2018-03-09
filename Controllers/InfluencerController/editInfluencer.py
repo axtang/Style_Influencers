@@ -1,7 +1,7 @@
 from . import *
 
 # Edit an influencer
-@app.route('/influencers/<string:influencers_name>/edit', method=['GET'], ['POST'])
+@influencer.route('/influencers/<string:influencers_name>/edit', method=['GET'], ['POST'])
 @login_required
 def editInfluencers(influencers_name):
     editInfluencer = session.query(Influencers).filter_by(name=influencer_name).one()
