@@ -12,7 +12,7 @@ of these creations.
 
 "Styles Influencers" is a RESTful web application written in Python 3.0, HTML5, and CSS3 and Javascript. It is built on a web-app framework called Flask and utilizes Google OAuth2.0 to authenticate and authorize users. A PostgreSQL database is created to provide contents for this application.
 
-## Prerequisities/ Preparations to set up this application
+## Prerequisities
 
 1. [Download and install the VirtualBox package](https://www.virtualbox.org/wiki/Download_Old_Builds_5_1)
 2. [Download and install Vagrant](https://www.vagrantup.com/downloads.html)
@@ -22,5 +22,8 @@ of these creations.
 6. On the command line, `cd` to the Vagrant directory and run `vagrant up` to set up the virtual machine.
 7. Then, run `vagrant ssh` to log into the virtual machine.
 8. Then, `cd /vagrant` to the vagrant file, which is shared by your local and host machines.
-9. To run the application, run `python3 views.py` on the command line. Note that this is run on Python 3.0, so check the version of Python in your computer.
-10. To access the application, go to `http://localhost`.
+
+## To run the application
+
+1. To run the application, run `python3 views.py` on the command line. Note that this is run on Python 3.0, so check the version of Python in your computer.
+2. To access the application, go to `http://localhost`.
