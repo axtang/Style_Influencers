@@ -23,4 +23,4 @@ of these creations.
 7. Then, run `vagrant ssh` to log into the virtual machine.
 8. Then, `cd /vagrant` to the vagrant file, which is shared by your local and host machines.
 9. To run the application, run `python3 views.py` on the command line. Note that this is run on Python 3.0, so check the version of Python in your computer.
-10. To access the application, go to `http://localhost:5000/home`.
+10. To access the application, go to `http://localhost`.
