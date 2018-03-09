@@ -1,7 +1,7 @@
 from . import *
 
 # Styles and influencers json file
-@app.route('/styleInfluencers/JSON')
+@style.route('/styleInfluencers/JSON')
 @login_required
 def allStyleInfluencersJSON():
 	styles = session.query(Styles).all()
