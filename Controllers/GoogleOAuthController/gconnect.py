@@ -1,6 +1,6 @@
 from . import *
 
-@app.route('/OAuth/<str:provider>', method=['POST'])
+@auth.route('/gconnect', method=['POST', 'GET'])
 def gconnect():
     """ Handles the Google+ sign-in process on the server side.
     Server side function to handle the state-token and the one-time-code

@@ -1,7 +1,7 @@
 from . import *
 
 # Disconnect - revoke a current user's token and reset their login_session
-@app.route('/gdisconnect')
+@auth.route('/gdisconnect')
 def gdisconnect():
   access_token = login_session.get('access_token')
   if access_token is None:
