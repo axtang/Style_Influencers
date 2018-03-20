@@ -1,4 +1,4 @@
-from flask import Blueprints
+from flask import Blueprint
 import datetime
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
